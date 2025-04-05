@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Broken Authentication & Session Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+ <!-- Go Back Button (Top-Left Corner) -->
+  <button onclick="history.back()" class="absolute top-4 left-4 bg-blue-300 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md">
+    ← Go Back
+  </button>
+  <body class="bg-white text-gray-900 font-sans">
+
+
+    <div class="max-w-5xl mx-auto p-6 space-y-8">
+    
+
+      <header class="text-center">
+        <h1 class="text-4xl font-bold text-red-600">🔓 Broken Authentication</h1>
+        <p class="text-xl mt-2 text-gray-700">Common Issues in Authentication & Session Management</p>
+      </header>
+
+      <section class="bg-gray-100 shadow-xl rounded-2xl p-6">
+        <h2 class="text-2xl font-semibold mb-4">Common Issues</h2>
+        <ul class="list-disc space-y-2 ml-5 text-gray-800">
+          <li>✅ Weak password policies allowing users to choose easily guessable or commonly used passwords. 🔑</li>
+          <li>✅ Lack of multi-factor authentication (MFA). 🔐</li>
+          <li>✅ Insecure storage of passwords. 🔄</li>
+          <li>✅ Predictable login credentials or tokens. 🎭</li>
+          <li>✅ Vulnerabilities in authentication mechanisms. 🕵️‍♂️</li>
+        </ul>
+      </section>
+
+      <section class="bg-gray-100 shadow-xl rounded-2xl p-6">
+        <h2 class="text-2xl font-semibold mb-4">🕵️ Improper Session Management</h2>
+        <ul class="list-disc space-y-2 ml-5 text-gray-800">
+          <li>✅ Predictable session identifiers or tokens. 🔢</li>
+          <li>✅ Session fixation attacks. 🎭</li>
+          <li>✅ Session expiration and timeout issues. ⏳</li>
+          <li>✅ Insecure client-side session data. 🍪</li>
+          <li>✅ Insecure or missing logout mechanisms. 🔚</li>
+        </ul>
+      </section>
+
+      <section class="bg-yellow-100 border-l-4 border-yellow-500 p-6 rounded-xl">
+        <h2 class="text-2xl font-bold text-yellow-700 mb-4">🔥 Bug Bounty Checklist</h2>
+
+        <div class="space-y-4 text-gray-800">
+          <div>
+            <h3 class="font-semibold text-lg">🔓 1. Weak Password Policies & Brute-Force Attacks</h3>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>✅ Strong password policies (12+ characters, symbols, etc.) 🔑</li>
+              <li>✅ Prevent weak passwords (admin123, password1) 🚫</li>
+              <li>✅ Lockout after multiple failed attempts 🔒</li>
+              <li>✅ CAPTCHA & rate limiting 🛑</li>
+              <li>✅ Prevent username enumeration 🕵️‍♂️</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg">🕵️ 2. Session Hijacking & Fixation</h3>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>✅ HttpOnly; Secure; SameSite=Strict 🍪</li>
+              <li>✅ Regenerate tokens after login ♻️</li>
+              <li>✅ Expire inactive sessions ⏳</li>
+              <li>✅ Invalidate tokens after logout 🔚</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg">🔀 3. MFA Bypass</h3>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>✅ Rate limits for OTP entry 🔢</li>
+              <li>✅ OTPs expire after first use ⏳</li>
+              <li>✅ Use TOTP (e.g., Google Authenticator) 📲</li>
+              <li>✅ Prevent OTP brute-forcing 🚨</li>
+              <li>✅ Rotate tokens after MFA login 🔄</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg">🔐 4. OAuth & API Authentication Security</h3>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>✅ Whitelist OAuth <code>redirect_uri</code> 🔗</li>
+              <li>✅ Use PKCE to prevent token hijacking 🏆</li>
+              <li>✅ Limit OAuth scopes ⚠️</li>
+              <li>✅ Enforce authentication on API endpoints 🔐</li>
+              <li>✅ Prevent IDORs 🕵️</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg">📂 5. Password Reset & Logout Security</h3>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>✅ Email/phone verification 📩</li>
+              <li>✅ Reset token expires after first use 🔄</li>
+              <li>✅ Invalidate all sessions after reset 🔚</li>
+              <li>✅ Full session revocation on logout 🏁</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg">🔓 6. Authentication Bypass Techniques</h3>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>✅ Parameter Manipulation 🔄</li>
+              <li>✅ Session Reuse 🕵️</li>
+              <li>✅ Cookie Modification 🍪</li>
+              <li>✅ URL Tampering 🚪</li>
+              <li>✅ HTTP Method Manipulation ⚡</li>
+              <li>✅ Authentication Logic Flaws 🎭</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg">🧪 Testing Scenarios</h3>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>✅ Default Credentials, Brute Force, Complexity, Session Mgmt 🔄</li>
+              <li>✅ Password Reset, MFA, Timeout, Logout 🔐</li>
+              <li>✅ Error Handling, Third-Party Auth, Timing Attacks ⏱️</li>
+              <li>✅ CSRF, Race Conditions, Business Logic, Zero-Days 🚨</li>
+              <li>✅ JWT, Hidden Endpoints, Token Reuse, Multi-Session 📱</li>
+              <li>✅ Forgotten Password Bypass, Header Manipulation, Expiry Analysis 🔄</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg">🎯 Final Bug Bounty Strategy</h3>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>🔹 Login & Auth Testing → Weak passwords, brute force</li>
+              <li>🔹 Session Mgmt Testing → Hijacking, fixation</li>
+              <li>🔹 MFA Implementation Testing</li>
+              <li>🔹 OAuth & API Security Testing</li>
+              <li>🔹 Business Logic Bypass</li>
+              <li>🔹 Privilege Escalation & Admin Access</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
+
+

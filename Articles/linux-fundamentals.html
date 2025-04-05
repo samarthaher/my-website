@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux Cheat Sheet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+  <div class="max-w-7xl mx-auto px-4 py-10">
+    <h1 class="text-5xl font-bold text-center text-blue-600 mb-12">🐧 Linux Cheat Sheet</h1>
+
+<div class="flex justify-start">
+        <button onclick="history.back()" class="bg-gray-700 text-white px-4 py-2 mb-4 rounded-xl shadow hover:bg-gray-600 transition">
+          ← Go Back
+        </button>
+      </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- File Navigation -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">📁 File Navigation</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">ls -la</code> - List all files with permissions and hidden files</li>
+          <li><code class="text-blue-600">cd /path</code> - Change directory</li>
+          <li><code class="text-blue-600">cd ..</code> - Move one level up</li>
+          <li><code class="text-blue-600">pwd</code> - Print working directory</li>
+          <li><code class="text-blue-600">tree</code> - Show directory tree (may require install)</li>
+        </ul>
+      </div>
+
+      <!-- File Management -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">📝 File Management</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">touch file.txt</code> - Create an empty file</li>
+          <li><code class="text-blue-600">cp a.txt b.txt</code> - Copy file</li>
+          <li><code class="text-blue-600">mv a.txt b.txt</code> - Move/rename file</li>
+          <li><code class="text-blue-600">rm file.txt</code> - Delete a file</li>
+          <li><code class="text-blue-600">nano file.txt</code> - Edit file using nano</li>
+        </ul>
+      </div>
+
+      <!-- Directory Management -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">📦 Directory Management</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">mkdir newdir</code> - Create a new directory</li>
+          <li><code class="text-blue-600">rmdir dir</code> - Remove empty directory</li>
+          <li><code class="text-blue-600">rm -rf dir</code> - Delete directory and contents</li>
+          <li><code class="text-blue-600">du -sh *</code> - Disk usage of folders</li>
+        </ul>
+      </div>
+
+      <!-- File Viewing -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">📜 File Viewing</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">cat file</code> - View file content</li>
+          <li><code class="text-blue-600">less file</code> - Scroll through file</li>
+          <li><code class="text-blue-600">tail -f log.txt</code> - Watch file live</li>
+          <li><code class="text-blue-600">head -n 10 file</code> - First 10 lines</li>
+          <li><code class="text-blue-600">wc -l file</code> - Count lines</li>
+        </ul>
+      </div>
+
+      <!-- File Permissions -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">🔒 Permissions</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">chmod +x script.sh</code> - Make file executable</li>
+          <li><code class="text-blue-600">chmod 755 file</code> - Set permissions</li>
+          <li><code class="text-blue-600">chown user file</code> - Change file owner</li>
+          <li><code class="text-blue-600">ls -l</code> - View file permissions</li>
+        </ul>
+      </div>
+
+      <!-- Searching -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">🔎 Searching</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">grep 'text' file</code> - Search in file</li>
+          <li><code class="text-blue-600">grep -r 'text' dir</code> - Recursive grep</li>
+          <li><code class="text-blue-600">find / -name "file.txt"</code> - Find file by name</li>
+          <li><code class="text-blue-600">locate file.txt</code> - Find file using database</li>
+        </ul>
+      </div>
+
+      <!-- Process Management -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">⚙️ Processes</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">ps aux</code> - Show all processes</li>
+          <li><code class="text-blue-600">top</code> - Task manager</li>
+          <li><code class="text-blue-600">kill PID</code> - Kill process by ID</li>
+          <li><code class="text-blue-600">killall name</code> - Kill by name</li>
+          <li><code class="text-blue-600">bg / fg</code> - Resume jobs in background/foreground</li>
+        </ul>
+      </div>
+
+      <!-- Networking -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">🌐 Networking</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">ip a</code> - Show network interfaces</li>
+          <li><code class="text-blue-600">ping 8.8.8.8</code> - Test connectivity</li>
+          <li><code class="text-blue-600">curl ifconfig.me</code> - Show public IP</li>
+          <li><code class="text-blue-600">netstat -tuln</code> - Listening ports</li>
+          <li><code class="text-blue-600">ss -tuln</code> - Alternative to netstat</li>
+        </ul>
+      </div>
+
+      <!-- Package Management -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">📦 Package Management</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">sudo apt update</code> - Update package list (Debian)</li>
+          <li><code class="text-blue-600">sudo apt install curl</code> - Install package</li>
+          <li><code class="text-blue-600">sudo apt remove nginx</code> - Remove package</li>
+          <li><code class="text-blue-600">yum install git</code> - Install via yum (RHEL/CentOS)</li>
+        </ul>
+      </div>
+
+      <!-- System Info -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">🖥️ System Info</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">uname -a</code> - System information</li>
+          <li><code class="text-blue-600">uptime</code> - How long system is running</li>
+          <li><code class="text-blue-600">df -h</code> - Disk space usage</li>
+          <li><code class="text-blue-600">free -m</code> - Memory usage</li>
+          <li><code class="text-blue-600">lscpu</code> - CPU info</li>
+        </ul>
+      </div>
+
+      <!-- User Management -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-xl font-semibold text-blue-500 mb-4">👤 User Management</h2>
+        <ul class="space-y-2 text-sm">
+          <li><code class="text-blue-600">whoami</code> - Show current user</li>
+          <li><code class="text-blue-600">adduser newuser</code> - Create new user</li>
+          <li><code class="text-blue-600">passwd user</code> - Change user password</li>
+          <li><code class="text-blue-600">usermod -aG sudo user</code> - Add user to sudo group</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="mt-20 text-center text-sm text-gray-500">
+      Built with 💻 + 🐧 by <span class="text-blue-600 font-medium">Samarth Aher</span>
+    </footer>
+  </div>
+</body>
+
+</html>
