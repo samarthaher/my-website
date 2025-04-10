@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGINX Guide for Bug Bounty Hunting</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <h1 class="text-4xl font-bold text-center text-blue-700 mb-6">🚀 NGINX Guide for Bug Bounty Hunting 🛡️</h1>
+
+    <!-- Section 1 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-2">1. Introduction and Overview 📘</h2>
+      <p>NGINX is a powerful, high-performance web server and reverse proxy server that is widely deployed on the internet. Its robust architecture, asynchronous event-driven model, and extensive configuration capabilities make it the backbone of many high-traffic sites. For bug bounty hunters, understanding NGINX in detail is crucial, as misconfigurations or overlooked settings may lead to exploitable vulnerabilities.</p>
+      <p class="mt-2 font-semibold">Key Concepts to Understand:</p>
+      <ul class="list-disc list-inside">
+        <li>🔄 <strong>Reverse Proxy Functionality:</strong> NGINX’s ability to sit between clients and backend servers.</li>
+        <li>⚖️ <strong>Load Balancing:</strong> Distribution of requests among multiple servers.</li>
+        <li>📦 <strong>Caching:</strong> Reducing server load and improving performance.</li>
+        <li>🧩 <strong>Module Architecture:</strong> Static and dynamic modules that extend functionality.</li>
+      </ul>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-2">2. Basic NGINX Configuration 🛠️</h2>
+      <p>Understanding the basic structure of NGINX configuration files is essential. The configuration is typically located at <code>/etc/nginx/nginx.conf</code>.</p>
+      <p class="mt-2 font-semibold">Important Blocks:</p>
+      <ul class="list-disc list-inside">
+        <li><code>http</code> – The main block for HTTP configuration.</li>
+        <li><code>server</code> – Defines virtual hosts (domains).</li>
+        <li><code>location</code> – Specifies rules for different URL paths.</li>
+      </ul>
+      <h3 class="text-xl font-semibold mt-4">Sample Configuration:</h3>
+      <pre class="bg-gray-100 p-3 rounded"><code>server {
+  listen 80;
+  server_name example.com;
+  location / {
+    proxy_pass http://localhost:3000;
+  }
+}</code></pre>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-2">3. Understanding Reverse Proxying 🔁</h2>
+      <p>Reverse proxying is one of NGINX’s core features. It allows NGINX to act as an intermediary between users and backend servers, improving security and performance.</p>
+      <p class="mt-2 font-semibold">Common Scenarios:</p>
+      <ul class="list-disc list-inside">
+        <li>✅ Protecting internal services.</li>
+        <li>🔀 Load balancing across services.</li>
+        <li>🌐 Serving static and dynamic content from different sources.</li>
+      </ul>
+      <h3 class="text-xl font-semibold mt-4">Tips:</h3>
+      <ul class="list-disc list-inside">
+        <li>Use <code>proxy_pass</code> carefully to avoid SSRF risks.</li>
+        <li>Hide internal IPs and error messages in responses.</li>
+      </ul>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-2">4. Common Misconfigurations 🧨</h2>
+      <ul class="list-disc list-inside">
+        <li>⚠️ Directory Listing Enabled: Can expose sensitive files.</li>
+        <li>📂 Misconfigured root/index paths: May allow access to unintended resources.</li>
+        <li>🛑 Lack of input validation in rewrite rules: May result in open redirect or path traversal.</li>
+        <li>🔓 Weak access controls or no authentication configured on internal routes.</li>
+      </ul>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-2">5. Useful NGINX Modules 🔌</h2>
+      <ul class="list-disc list-inside">
+        <li><strong>ngx_http_rewrite_module:</strong> For URL rewriting and redirection.</li>
+        <li><strong>ngx_http_headers_module:</strong> Control over response headers.</li>
+        <li><strong>ngx_http_proxy_module:</strong> Core for reverse proxying.</li>
+        <li><strong>ngx_http_auth_basic_module:</strong> Enables basic authentication.</li>
+        <li><strong>ngx_http_limit_req_module:</strong> Rate limiting to prevent abuse.</li>
+      </ul>
+    </section>
+
+    <!-- Section 6 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-2">6. HTTP Headers and Manipulation 📬</h2>
+      <p>Improper header configurations can lead to security vulnerabilities such as host header attacks, cache poisoning, or even SSRF.</p>
+      <ul class="list-disc list-inside">
+        <li>Use <code>proxy_set_header</code> to manage headers securely.</li>
+        <li>Watch out for <code>Host</code>, <code>X-Forwarded-For</code>, <code>X-Real-IP</code> spoofing.</li>
+      </ul>
+      <h3 class="text-xl font-semibold mt-4">Example:</h3>
+      <pre class="bg-gray-100 p-3 rounded"><code>proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</code></pre>
+      <p class="mt-2 font-semibold">Bug Bounty Tips:</p>
+      <ul class="list-disc list-inside">
+        <li>Fake <code>X-Forwarded-For</code> to see how the app handles IPs.</li>
+        <li>Inject headers for cache poisoning checks.</li>
+      </ul>
+    </section>
+
+    <!-- Section 7 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-2">7. Common Vulnerabilities in NGINX 🐛</h2>
+      <ul class="list-disc list-inside">
+        <li><strong>Open Redirects:</strong> Poorly validated rewrite/return can redirect users to malicious sites.</li>
+        <li><strong>SSRF:</strong> Exposing internal services through misconfigured <code>proxy_pass</code>.</li>
+        <li><strong>Directory Traversal:</strong> Use of unsafe paths allowing access to files like <code>/etc/passwd</code>.</li>
+        <li><strong>HTTP Smuggling:</strong> Desync between frontend (NGINX) and backend parsing.</li>
+      </ul>
+      <p class="mt-2 font-semibold">🕵️‍♂️ Pro Tips:</p>
+      <ul class="list-disc list-inside">
+        <li>Use tools like <code>ffuf</code> or <code>dirsearch</code> to discover endpoints.</li>
+        <li>Review response headers and server banners.</li>
+        <li>Check logs if you have access: <code>access.log</code>, <code>error.log</code>.</li>
+      </ul>
+    </section>
+
+    <!-- Section 6 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-2">8. Threat Modeling with NGINX 🧠🔍</h2>
+      <p>Threat modeling helps hunters identify and prioritize vulnerabilities by understanding how an NGINX deployment fits into a broader system architecture.</p>
+      <ul class="list-disc list-inside">
+        <li><strong>Asset Identification:</strong> What is exposed by NGINX? Is it static content, APIs, or backends?</li>
+        <li><strong>Trust Boundaries:</strong> Where does NGINX validate input and transition traffic?</li>
+        <li><strong>Attack Surface:</strong> Identify entry points (headers, query strings, paths).</li>
+        <li><strong>Abuse Cases:</strong> Can an attacker tamper with headers, hijack sessions, or reach internal resources?</li>
+      </ul>
+    </section>
+
+    <!-- Section 9 -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-2">9. Conclusion and Resources 🎓</h2>
+      <p>Mastering NGINX gives you an edge in understanding how real-world web applications are hosted and served. With this knowledge, you can better identify attack surfaces and find misconfigurations that may lead to serious vulnerabilities.</p>
+      <h3 class="text-xl font-semibold mt-4">📚 Recommended Resources:</h3>
+      <ul class="list-disc list-inside">
+        <li><a href="https://nginx.org/en/docs/" class="text-blue-600 underline">Official NGINX Documentation</a></li>
+        <li><a href="https://portswigger.net/web-security" class="text-blue-600 underline">PortSwigger Web Security Academy</a></li>
+        <li><a href="https://book.hacktricks.xyz" class="text-blue-600 underline">HackTricks - Bug Hunting Techniques</a></li>
+        <li><a href="https://owasp.org/www-project-top-ten/" class="text-blue-600 underline">OWASP Top Ten</a></li>
+      </ul>
+    </section>
+<footer class="mt-20 text-center text-sm text-gray-500">
+      Built with 💻 + 🐧 by <span class="text-blue-600 font-medium">Samarth Aher</span>
+    </footer>
+  </div>
+
+</body>
+
+</html>
