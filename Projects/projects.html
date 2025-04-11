@@ -1,55 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/blogs/Images/favicon.ico">
-    <title>Samarth Aher.</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="/blogs/Images/favicon.ico" />
+  <title>Samarth Aher.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-900 font-mono">
-    <header class="max-w-3xl mx-auto py-6 flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-            <img src="/blogs/Images/logo.JPG" alt="Logo" class="w-10 h-10 rounded-full">
-            <h1 class="text-2xl font-bold"><a href="/blogs/index.html">Samarth Aher</a></h1>
-        </div>
-        <nav>
-            <ul class="flex space-x-4 text-sky-600">
-                <li><a href="/blogs/index.html" class="hover:underline">Home</a></li>
-                <li><a href="/blogs/Articles/articles.html" class="hover:underline">Articles</a></li>
-		<li><a href="#" class="hover:underline">Projects</a></li>
-                <li><a href="/blogs/About/about.html" class="hover:underline">About</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main class="max-w-3xl mx-auto p-4">
-        <h2 class="text-2xl font-bold mt-6 text-sky-600">Projects:</h2>
-        <div class="mt-4 space-y-4">
-            <div class="flex space-x-4">
-                <span class="text-gray-500">16-04-2025</span>
-                <a href="/blogs/Projects/Password-Generator.html" class="text-sky-800 hover:underline">Password Generator</a>
-            </div>
-            <div class="flex space-x-4">
-                <span class="text-gray-500">01-05-2025</span>
-                <a href="/blogs/Projects/Github-Finder.html" class="text-sky-800 hover:underline">Github Finder</a>
-            </div>
-            <div class="flex space-x-4">
-                <span class="text-gray-500">21-05-2025</span>
-                <a href="#" class="text-sky-800 hover:underline">Subdomain Ennumeration [Comming Soon]</a>
-            </div>
-        </div>
-    </main>
-   
+  <!-- Header with Responsive Menu -->
+  <header class="max-w-3xl mx-auto p-4 flex items-center justify-between">
+    <div class="flex items-center space-x-2">
+      <img src="/blogs/Images/logo.JPG" alt="Logo" class="w-10 h-10 rounded-full" />
+      <h1 class="text-xl sm:text-2xl font-bold">
+        <a href="/blogs/index.html">Samarth Aher</a>
+      </h1>
+    </div>
+    
+    <!-- Mobile Menu Toggle -->
+    <div class="sm:hidden">
+      <button id="menu-btn" class="text-sky-600 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
 
-    <footer class="max-w-3xl mx-auto py-6 text-center text-gray-500">
-        <p>Copyright &copy; 2025 Samarth Aher</p>
-   <nav class="mt-2 text-sky-600">
-            <a href="/blogs/index.html" class="hover:underline">Home</a> |
-            <a href="/blogs/Articles/articles.html" class="hover:underline">Articles</a> |
-	    <a href="#" class="hover:underline">Projects</a> |
-            <a href="/blogs/About/about.html" class="hover:underline">About</a>
-        </nav>
-    </footer>
+    <!-- Navigation -->
+    <nav class="hidden sm:flex space-x-4 text-sky-600 text-sm sm:text-base" id="nav-links">
+      <a href="/blogs/index.html" class="hover:underline">Home</a>
+      <a href="/blogs/Articles/articles.html" class="hover:underline">Articles</a>
+      <a href="#" class="hover:underline">Projects</a>
+      <a href="/blogs/About/about.html" class="hover:underline">About</a>
+    </nav>
+  </header>
+
+  <!-- Mobile Nav Menu -->
+  <div id="mobile-menu" class="sm:hidden hidden px-4 pb-4 text-sky-600 text-sm space-y-2">
+    <a href="/blogs/index.html" class="block hover:underline">Home</a>
+    <a href="/blogs/Articles/articles.html" class="block hover:underline">Articles</a>
+    <a href="#" class="block hover:underline">Projects</a>
+    <a href="/blogs/About/about.html" class="block hover:underline">About</a>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto px-4 py-6">
+    <h2 class="text-xl sm:text-2xl font-bold text-sky-600">Projects:</h2>
+    <div class="mt-6 space-y-4">
+
+      <!-- Project Item -->
+      <div class="p-4 bg-white rounded shadow-sm">
+        <span class="block text-gray-500 text-sm">16-04-2025</span>
+        <a href="/blogs/Projects/Password-Generator.html" class="block text-sky-800 hover:underline text-base">Password Generator</a>
+      </div>
+
+      <div class="p-4 bg-white rounded shadow-sm">
+        <span class="block text-gray-500 text-sm">01-05-2025</span>
+        <a href="/blogs/Projects/Github-Finder.html" class="block text-sky-800 hover:underline text-base">Github Finder</a>
+      </div>
+
+      <div class="p-4 bg-white rounded shadow-sm">
+        <span class="block text-gray-500 text-sm">21-05-2025</span>
+        <a href="#" class="block text-sky-800 hover:underline text-base">Subdomain Enumeration [Coming Soon]</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="max-w-3xl mx-auto py-6 px-4 text-center text-gray-500 text-sm">
+    <p>Copyright &copy; 2025 Samarth Aher</p>
+    <nav class="mt-2 text-sky-600 space-x-2">
+      <a href="/blogs/index.html" class="hover:underline">Home</a> |
+      <a href="/blogs/Articles/articles.html" class="hover:underline">Articles</a> |
+      <a href="#" class="hover:underline">Projects</a> |
+      <a href="/blogs/About/about.html" class="hover:underline">About</a>
+    </nav>
+  </footer>
+
+  <!-- Script for Hamburger Toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
 </body>
 </html>
+
